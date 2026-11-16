@@ -29,8 +29,21 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .mark { width: 1.5em; height: 1.5em; flex: none; }
 
 /* ───── Navigazione: scura sull'hero chiaro, diventa bianca con filter: invert() ───── */
-.nav {
-  position: fixed; inset: 0 0 auto; z-index: 10;
+/* .top copre tutta la pagina senza occupare spazio, così la scena resta a schermo intero.
+   Niente z-index sul contenitore: isolerebbe il mix-blend-mode della nav nella versione statica */
+body { position: relative; }
+.top { position: absolute; inset: 0; pointer-events: none; }
+.top > * { position: relative; z-index: 10; pointer-events: auto; }
+.demo-bar {
+  display: flex; justify-content: center; align-items: center; gap: .5em;
+  padding: .55rem clamp(16px, 2.4vw, 32px);
+  background: #0B1533; color: rgba(244, 241, 234, .85);
+  font-size: 13px; line-height: 1.4; text-align: center;
+}
+.demo-bar a { color: #fff; font-weight: 700; }
+.demo-bar svg { flex: none; width: 1.15em; height: 1.15em; fill: #E8F06A; }
+.top > .nav {
+  position: sticky; top: 0;
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: start;
   padding: 18px clamp(16px, 2.4vw, 32px);
   color: #0a0a0a;
